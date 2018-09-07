@@ -10,14 +10,15 @@ A collection of generic, re-usable Python utilities.
 ## How do I get set up? ##
 
 * Make sure you have Git installed - [Download Git](https://git-scm.com/downloads)
-* Run `pip install git+https://bitbucket.org:SheffieldSolar/ss-utilities.git`
-    - NOTE: You may need to run this command as sudo on Linux machines depending, on your Python installation i.e. `sudo pip install git+https://bitbucket.org:SheffieldSolar/ss-utilities.git`
+* Run `pip install git+https://SheffieldSolar@bitbucket.org/SheffieldSolar/ss-utilities.git`
+    - NOTE: You may need to run this command as sudo on Linux machines depending, on your Python installation i.e. `sudo pip install git+https://SheffieldSolar@bitbucket.org/SheffieldSolar/ss-utilities.git`
 
 ## Getting started ##
 
 Example usage:
 ```Python
-from ss_utilities.error_stat import r_squared, wMAPE
+from ss_utilities.error_stat import r_squared, wMAPE, pearson_correlation
+from ss_utilities.generic_tools import from_unixtime, to_unixtime, print_progress, query_yes_no
 
 # Do Something
 ```
