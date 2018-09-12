@@ -104,3 +104,55 @@ def wmape(predictions, actuals, norms=None, weights=None):
     weights = actuals if weights is None else weights
     mapes = np.abs((predictions - actuals) / norms) * 100.
     return np.sum(weights * mapes) / np.sum(weights)
+
+def rmse(predictions, actuals):
+    r"""
+    Calculate the Root Mean Square Error (RMSE).
+    
+    Parameters
+    ----------
+    `predictions` : numpy array of floats
+        Predictions being tested.
+    `actuals` : numpy array of floats
+        Actual values corresponding to `predictions`. Must be same size as `predictions`.
+
+    Returns
+    -------
+    float
+        RMSE.
+
+    Notes
+    -----
+    .. math::
+        \begin{gathered}
+        y=Actuals,\quad f=Predictions\\
+        \mathit{RMSE}=\sqrt{\frac{\sum_i^n{{\left (f_i-y_i \right )}^2}}{n}}
+        \end{gathered}
+    """
+    return np.sqrt(np.mean(np.pow(predictions - actuals, 2)))
+
+def mbe(predictions, actuals):
+    r"""
+    Calculate the Mean Bias Error (MBE).
+    
+    Parameters
+    ----------
+    `predictions` : numpy array of floats
+        Predictions being tested.
+    `actuals` : numpy array of floats
+        Actual values corresponding to `predictions`. Must be same size as `predictions`.
+
+    Returns
+    -------
+    float
+        MBE.
+
+    Notes
+    -----
+    .. math::
+        \begin{gathered}
+        y=Actuals,\quad f=Predictions\\
+        \mathit{MBE}=\frac{\sum_i^n{\left (f_i-y_i \right )}}{n}
+        \end{gathered}
+    """
+    return np.mean(predictions - actuals)

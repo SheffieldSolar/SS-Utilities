@@ -56,6 +56,41 @@
 <p>Jamie Taylor
 2018-09-04</p>
 <dl class="function">
+<dt id="ss_utilities.error_stats.mbe">
+<code class="descclassname">ss_utilities.error_stats.</code><code class="descname">mbe</code><span class="sig-paren">(</span><em>predictions</em>, <em>actuals</em><span class="sig-paren">)</span><a class="headerlink" href="#ss_utilities.error_stats.mbe" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the Mean Bias Error (MBE).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>`predictions`</strong> <span class="classifier-delimiter">:</span> <span class="classifier">numpy array of floats</span></dt>
+<dd><p class="first last">Predictions being tested.</p>
+</dd>
+<dt><strong>`actuals`</strong> <span class="classifier-delimiter">:</span> <span class="classifier">numpy array of floats</span></dt>
+<dd><p class="first last">Actual values corresponding to <cite>predictions</cite>. Must be same size as <cite>predictions</cite>.</p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>float</strong></dt>
+<dd><p class="first last">MBE.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{gathered}
+y=Actuals,\quad f=Predictions\\
+\mathit{MBE}=\frac{\sum_i^n{\left (f_i-y_i \right )}}{n}
+\end{gathered}\end{split}\]</div>
+</dd></dl>
+
+<dl class="function">
 <dt id="ss_utilities.error_stats.pearson_coefficient">
 <code class="descclassname">ss_utilities.error_stats.</code><code class="descname">pearson_coefficient</code><span class="sig-paren">(</span><em>predictions</em>, <em>actuals</em><span class="sig-paren">)</span><a class="headerlink" href="#ss_utilities.error_stats.pearson_coefficient" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate the Pearson correlation coefficient <a class="reference internal" href="#r63566f7a2567-1" id="id1">[1]</a>.</p>
@@ -138,6 +173,41 @@ R^2&amp;=1-\frac{SS_{res}}{SS_{tot}}
 <tr><td class="label">[1]</td><td><em>(<a class="fn-backref" href="#id3">1</a>, <a class="fn-backref" href="#id4">2</a>)</em> <a class="reference external" href="https://en.wikipedia.org/wiki/Coefficient_of_determination">https://en.wikipedia.org/wiki/Coefficient_of_determination</a></td></tr>
 </tbody>
 </table>
+</dd></dl>
+
+<dl class="function">
+<dt id="ss_utilities.error_stats.rmse">
+<code class="descclassname">ss_utilities.error_stats.</code><code class="descname">rmse</code><span class="sig-paren">(</span><em>predictions</em>, <em>actuals</em><span class="sig-paren">)</span><a class="headerlink" href="#ss_utilities.error_stats.rmse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the Root Mean Square Error (RMSE).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>`predictions`</strong> <span class="classifier-delimiter">:</span> <span class="classifier">numpy array of floats</span></dt>
+<dd><p class="first last">Predictions being tested.</p>
+</dd>
+<dt><strong>`actuals`</strong> <span class="classifier-delimiter">:</span> <span class="classifier">numpy array of floats</span></dt>
+<dd><p class="first last">Actual values corresponding to <cite>predictions</cite>. Must be same size as <cite>predictions</cite>.</p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>float</strong></dt>
+<dd><p class="first last">RMSE.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{gathered}
+y=Actuals,\quad f=Predictions\\
+\mathit{RMSE}=\sqrt{\frac{\sum_i^n{{\left (f_i-y_i \right )}^2}}{n}}
+\end{gathered}\end{split}\]</div>
 </dd></dl>
 
 <dl class="function">

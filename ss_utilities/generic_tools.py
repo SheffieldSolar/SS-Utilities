@@ -10,6 +10,7 @@ from datetime import datetime
 import os
 import sys
 import pytz
+from calendar import monthrange
 
 class GenericException(Exception):
     """A generic exception for anticipated errors."""
@@ -212,3 +213,12 @@ def print_progress(iteration, total, prefix='', suffix='', decimals=2, bar_lengt
     if iteration == total:
         sys.stdout.write('\n')
         sys.stdout.flush()
+
+def monthdelta(dt, delta):
+    """Add or subtract *delta* months from the datetime *dt*."""
+    y, m, d, h, mi, s = dt.year, dt.month, dt.day, dt.hour, dt.minute, dt.second
+    new_m = (m + delta) % 12
+    new_y = y + (m + delta - 1) // 12
+    if not new_m: new_m = 12
+    new_d = min(d, monthrange(y, m)[1])
+    return dt.replace(day=new_d, month=new_m, year=new_y)
