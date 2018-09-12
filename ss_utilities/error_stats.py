@@ -129,7 +129,7 @@ def rmse(predictions, actuals):
         \mathit{RMSE}=\sqrt{\frac{\sum_i^n{{\left (f_i-y_i \right )}^2}}{n}}
         \end{gathered}
     """
-    return np.sqrt(np.mean(np.pow(predictions - actuals, 2)))
+    return np.sqrt(np.mean(np.power(predictions - actuals, 2)))
 
 def mbe(predictions, actuals):
     r"""
