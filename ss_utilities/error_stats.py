@@ -105,6 +105,40 @@ def wmape(predictions, actuals, norms=None, weights=None):
     mapes = np.abs((predictions - actuals) / norms) * 100.
     return np.sum(weights * mapes) / np.sum(weights)
 
+def wmnbe(predictions, actuals, norms=None, weights=None):
+    r"""
+    Calculate the weighted Mean Normalised Bias Error (wMnBE).
+    
+    Parameters
+    ----------
+    `predictions` : numpy array of floats
+        Predictions being tested.
+    `actuals` : numpy array of floats
+        Actual values corresponding to `predictions`. Must be same size as `predictions`.
+    `norms` : numpy array of floats
+        Normalisation values. Must be same size as `predictions`. Default is to use `actuals`.
+    `weights` : numpy array of floats
+        Weighting values. Must be same size as `predictions`. Default is to use `actuals`.
+
+    Returns
+    -------
+    float
+        wMnBE.
+
+    Notes
+    -----
+    .. math::
+        \begin{gathered}
+        y=Actuals,\quad f=Predictions,\quad n=Normalisations,\quad w=Weights\\
+        \mathit{wMnBE}=
+        \frac{\sum_i{w_i\times\frac{f_i-y_i}{n_i}\times100\%}}{\sum_i{w_i}}
+        \end{gathered}
+    """
+    norms = actuals if norms is None else norms
+    weights = actuals if weights is None else weights
+    nbes = ((predictions - actuals) / norms) * 100.
+    return np.sum(weights * nbes) / np.sum(weights)
+
 def rmse(predictions, actuals):
     r"""
     Calculate the Root Mean Square Error (RMSE).
