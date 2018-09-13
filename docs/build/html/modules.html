@@ -252,6 +252,48 @@ y=Actuals,\quad f=Predictions,\quad n=Normalisations,\quad w=Weights\\
 \end{gathered}\end{split}\]</div>
 </dd></dl>
 
+<dl class="function">
+<dt id="ss_utilities.error_stats.wmnbe">
+<code class="descclassname">ss_utilities.error_stats.</code><code class="descname">wmnbe</code><span class="sig-paren">(</span><em>predictions</em>, <em>actuals</em>, <em>norms=None</em>, <em>weights=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ss_utilities.error_stats.wmnbe" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the weighted Mean Normalised Bias Error (wMnBE).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>`predictions`</strong> <span class="classifier-delimiter">:</span> <span class="classifier">numpy array of floats</span></dt>
+<dd><p class="first last">Predictions being tested.</p>
+</dd>
+<dt><strong>`actuals`</strong> <span class="classifier-delimiter">:</span> <span class="classifier">numpy array of floats</span></dt>
+<dd><p class="first last">Actual values corresponding to <cite>predictions</cite>. Must be same size as <cite>predictions</cite>.</p>
+</dd>
+<dt><strong>`norms`</strong> <span class="classifier-delimiter">:</span> <span class="classifier">numpy array of floats</span></dt>
+<dd><p class="first last">Normalisation values. Must be same size as <cite>predictions</cite>. Default is to use <cite>actuals</cite>.</p>
+</dd>
+<dt><strong>`weights`</strong> <span class="classifier-delimiter">:</span> <span class="classifier">numpy array of floats</span></dt>
+<dd><p class="first last">Weighting values. Must be same size as <cite>predictions</cite>. Default is to use <cite>actuals</cite>.</p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>float</strong></dt>
+<dd><p class="first last">wMnBE.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{gathered}
+y=Actuals,\quad f=Predictions,\quad n=Normalisations,\quad w=Weights\\
+\mathit{wMnBE}=
+\frac{\sum_i{w_i\times\frac{f_i-y_i}{n_i}\times100\%}}{\sum_i{w_i}}
+\end{gathered}\end{split}\]</div>
+</dd></dl>
+
 </div>
 </div>
 
