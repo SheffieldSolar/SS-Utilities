@@ -11,6 +11,7 @@ import os
 import sys
 import pytz
 from calendar import monthrange
+import numpy as np
 
 class GenericException(Exception):
     """A generic exception for anticipated errors."""
@@ -41,14 +42,14 @@ class GenericErrorLogger:
         `msg` : string
             Message to be recorded in *self.logfile*.
         """
-        timestamp = datetime.now().strftime('%Y-%m-%dT%H:%M:%S')
+        timestamp = datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
         scriptname = os.path.basename(__file__)
-        fid = open(self.logfile, 'a')
+        fid = open(self.logfile, "a")
         fid.write(timestamp + " " + scriptname + ": " + str(msg) + "\n")
         fid.close()
         return
 
-def email_alert(message, recipient=None, carbon_copy=None, subject='Sheffield Solar', reply_to=None,
+def email_alert(message, recipient=None, carbon_copy=None, subject="Sheffield Solar", reply_to=None,
                 attachments=None):
     """
     Send an email alert using sendmail.
@@ -62,22 +63,22 @@ def email_alert(message, recipient=None, carbon_copy=None, subject='Sheffield So
     from email.mime.application import MIMEApplication
     from subprocess import Popen, PIPE
     msg = MIMEMultipart()
-    msg['Subject'] = subject
-    msg['From'] = 'solarfarm@sheffield.ac.uk'
+    msg["Subject"] = subject
+    msg["From"] = "solarfarm@sheffield.ac.uk"
     if recipient is None:
-        recipient = 'jamie.taylor@sheffield.ac.uk'
+        recipient = "jamie.taylor@sheffield.ac.uk"
     if carbon_copy is not None:
         msg["Cc"] = carbon_copy
-    msg['To'] = recipient
+    msg["To"] = recipient
     if reply_to is not None:
         msg["Reply-To"] = reply_to
     msg.attach(MIMEText(message))
     if attachments is not None:
         for att in attachments:
-            with open(att, 'rb') as f:
+            with open(att, "rb") as f:
                 filename = os.path.split(att)[1]
-                attachment = MIMEApplication(f.read(), 'subtype')
-                attachment['Content-Disposition'] = 'attachment; filename="%s";' % filename
+                attachment = MIMEApplication(f.read(), "subtype")
+                attachment["Content-Disposition"] = 'attachment; filename="%s";' % filename
                 msg.attach(attachment)
     mailer = Popen(["/usr/sbin/sendmail", "-t"], stdin=PIPE)
     mailer.communicate(msg.as_string())
@@ -175,7 +176,7 @@ def query_yes_no(question, default="yes"):
     while True:
         sys.stdout.write(question + prompt)
         choice = raw_input().lower()
-        if default is not None and choice == '':
+        if default is not None and choice == "":
             return valid[default]
         elif choice in valid:
             return valid[choice]
@@ -183,7 +184,7 @@ def query_yes_no(question, default="yes"):
             sys.stdout.write("Please respond with 'yes' or 'no' "
                              "(or 'y' or 'n').\n")
 
-def print_progress(iteration, total, prefix='', suffix='', decimals=2, bar_length=100):
+def print_progress(iteration, total, prefix="", suffix="", decimals=2, bar_length=100):
     """
     Call in a loop to create terminal progress bar.
 
@@ -207,11 +208,11 @@ def print_progress(iteration, total, prefix='', suffix='', decimals=2, bar_lengt
     """
     filled_length = int(round(bar_length * iteration / float(total)))
     percents = round(100.00 * (iteration / float(total)), decimals)
-    progress_bar = '#' * filled_length + '-' * (bar_length - filled_length)
-    sys.stdout.write('\r%s |%s| %s%s %s' % (prefix, progress_bar, percents, '%', suffix))
+    progress_bar = "#" * filled_length + "-" * (bar_length - filled_length)
+    sys.stdout.write("\r%s |%s| %s%s %s" % (prefix, progress_bar, percents, "%", suffix))
     sys.stdout.flush()
     if iteration == total:
-        sys.stdout.write('\n')
+        sys.stdout.write("\n")
         sys.stdout.flush()
 
 def monthdelta(dt, delta):
@@ -222,3 +223,38 @@ def monthdelta(dt, delta):
     if not new_m: new_m = 12
     new_d = min(d, monthrange(y, m)[1])
     return dt.replace(day=new_d, month=new_m, year=new_y)
+
+def haversine_np(lat1, lon1, lat2, lon2, units="km"):
+    """
+    Calculate the great circle distance between two points
+    on the earth (specified in decimal degrees)
+    All args must be of equal length!
+    All input lat/lon are assumed to be decimal degrees!
+
+    Parameters
+    ----------
+    `lat1` : np.array
+        Latitudes of reference point(s) as either Numpy array of dtype float or single float.
+    `lon1` : np.array
+        Longitudes of reference point(s) as either Numpy array of dtype float or single float.
+    `lat2` : np.array
+        Latitudes of point(s) of interest as either Numpy array of dtype float or single float.
+    `lon2` : np.array
+        Longitudes of point(s) of interest as either Numpy array of dtype float or single float.
+    `units` : str
+        One of: 'km' (default), 'm', 'mi'.
+    """
+    avg_earth_radius_km = 6371.0088
+    unit_conversion = {
+        "km": 1,
+        "m": 1000,
+        "mi": 0.621371192,
+    }
+    avg_earth_radius = avg_earth_radius_km * unit_conversion[units]
+    lon1, lat1, lon2, lat2 = map(np.radians, [lon1, lat1, lon2, lat2])
+    dlon = lon2 - lon1
+    dlat = lat2 - lat1
+    a = np.sin(dlat / 2.0) ** 2 + np.cos(lat1) * np.cos(lat2) * np.sin(dlon / 2.0) ** 2
+    c = 2.0 * np.arcsin(np.sqrt(a))
+    hav_dist = avg_earth_radius * c
+    return hav_dist
