@@ -30,7 +30,7 @@ from ss_utilities.generic_tools import from_unixtime, to_unixtime, print_progres
 ## How do I upgrade? ##
 
 To upgrade the code:
-* Run `pip install --upgrade git+https://github.com/SheffieldSolar/PV_Forecast-API`
+* Run `pip install --upgrade git+https://SheffieldSolar@bitbucket.org/SheffieldSolar/ss-utilities.git`
 
 ## Contribution Guidelines ##
 
