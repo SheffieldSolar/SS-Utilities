@@ -258,3 +258,20 @@ def haversine_np(lat1, lon1, lat2, lon2, units="km"):
     c = 2.0 * np.arcsin(np.sqrt(a))
     hav_dist = avg_earth_radius * c
     return hav_dist
+
+def ascii_bar_chart(data, title="ASCII Bar Chart", maxwidth=100, show_values=True, barchar="#"):
+    title_pad_l = " " * ((maxwidth - len(title)) // 2)
+    title_pad_r = " " * (maxwidth - len(title) - len(title_pad_l))
+    output = "{0}\n{1}{2}{3}\n{0}\n".format("-" * maxwidth, title_pad_l, title, title_pad_r)
+    max_label_width = max([len(r[0]) for r in data])
+    max_val = max([r[1] for r in data])
+    right_space = 10 + len("{}".format(max_val))
+    bar_inc = max_val / float(maxwidth - max_label_width - right_space)
+    for label, value in data:
+        val_label = " {}".format(value) if show_values else ""
+        bars = barchar * int(np.floor(float(value) / bar_inc))
+        bars = "[{}]".format(bars) if value > 0. else ""
+        left_pad = " " * (max_label_width - len(label) + 2)
+        output += "{}{} | {}{}\n".format(left_pad, label, bars, val_label)
+    output += "{}\n".format("-" * maxwidth)
+    return output
