@@ -4,7 +4,7 @@ A collection of generic, re-usable Python utilities.
 ## What is this repository for? ##
 
 * Cool Python functions that are re-usable.
-* Version 0.1
+* Version 0.3
 * Works with Python 2.7+ or 3.5+
 
 ## How do I get set up? ##
@@ -18,7 +18,7 @@ A collection of generic, re-usable Python utilities.
 Example usage:
 ```Python
 from ss_utilities.error_stat import r_squared, wMAPE, pearson_correlation
-from ss_utilities.generic_tools import from_unixtime, to_unixtime, print_progress, query_yes_no
+from ss_utilities.generic_tools import from_unixtime, to_unixtime, print_progress, query_yes_no, ascii_bar_chart
 
 # Do Something
 ```
