@@ -49,8 +49,8 @@ class GenericErrorLogger:
         fid.close()
         return
 
-def email_alert(message, recipient=None, carbon_copy=None, subject="Sheffield Solar", reply_to=None,
-                attachments=None):
+def email_alert(message, recipient=None, carbon_copy=None, subject='Sheffield Solar', reply_to=None,
+                attachments=None, html=False):
     """
     Send an email alert using sendmail.
 
@@ -63,22 +63,23 @@ def email_alert(message, recipient=None, carbon_copy=None, subject="Sheffield So
     from email.mime.application import MIMEApplication
     from subprocess import Popen, PIPE
     msg = MIMEMultipart()
-    msg["Subject"] = subject
-    msg["From"] = "solarfarm@sheffield.ac.uk"
+    msg['Subject'] = subject
+    msg['From'] = 'solar@sheffield.ac.uk'
     if recipient is None:
-        recipient = "jamie.taylor@sheffield.ac.uk"
+        recipient = 'jamie.taylor@sheffield.ac.uk'
     if carbon_copy is not None:
         msg["Cc"] = carbon_copy
-    msg["To"] = recipient
+    msg['To'] = recipient
     if reply_to is not None:
         msg["Reply-To"] = reply_to
-    msg.attach(MIMEText(message))
+    body = MIMEText(message, "html") if html else MIMEText(message, "plain")
+    msg.attach(body)
     if attachments is not None:
         for att in attachments:
-            with open(att, "rb") as f:
+            with open(att, 'rb') as f:
                 filename = os.path.split(att)[1]
-                attachment = MIMEApplication(f.read(), "subtype")
-                attachment["Content-Disposition"] = 'attachment; filename="%s";' % filename
+                attachment = MIMEApplication(f.read(), 'subtype')
+                attachment['Content-Disposition'] = 'attachment; filename="%s";' % filename
                 msg.attach(attachment)
     mailer = Popen(["/usr/sbin/sendmail", "-t"], stdin=PIPE)
     mailer.communicate(msg.as_string())
