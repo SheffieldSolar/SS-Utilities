@@ -1,3 +1,5 @@
+THIS REPOSITORY IS NOW DEPRECATED, USE: https://github.com/SheffieldSolar/SS-Utilities
+
 # SS-Utilities
 A collection of generic, re-usable Python utilities.
 
