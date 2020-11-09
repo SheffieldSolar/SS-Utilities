@@ -81,7 +81,7 @@ def email_alert(message, recipient=None, carbon_copy=None, subject='Sheffield So
                 attachment = MIMEApplication(f.read(), 'subtype')
                 attachment['Content-Disposition'] = 'attachment; filename="%s";' % filename
                 msg.attach(attachment)
-    mailer = Popen(["/usr/sbin/sendmail", "-t"], stdin=PIPE)
+    mailer = Popen(["/usr/sbin/sendmail", "-t"], stdin=PIPE, text=True)
     mailer.communicate(msg.as_string())
     return
 
