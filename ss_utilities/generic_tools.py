@@ -176,7 +176,10 @@ def query_yes_no(question, default="yes"):
         raise ValueError("invalid default answer: '%s'" % default)
     while True:
         sys.stdout.write(question + prompt)
-        choice = raw_input().lower()
+        if (sys.version_info > (3, 0)):
+            choice = input().lower()
+        else:
+            choice = raw_input().lower()
         if default is not None and choice == "":
             return valid[default]
         elif choice in valid:
