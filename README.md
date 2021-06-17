@@ -6,14 +6,14 @@ A collection of generic, re-usable Python utilities.
 ## What is this repository for? ##
 
 * Cool Python functions that are re-usable.
-* Version 0.3
+* Version 0.5
 * Works with Python 2.7+ or 3.5+
 
 ## How do I get set up? ##
 
 * Make sure you have Git installed - [Download Git](https://git-scm.com/downloads)
-* Run `pip install git+https://SheffieldSolar@bitbucket.org/SheffieldSolar/ss-utilities.git`
-    - NOTE: You may need to run this command as sudo on Linux machines depending, on your Python installation i.e. `sudo pip install git+https://SheffieldSolar@bitbucket.org/SheffieldSolar/ss-utilities.git`
+* Run `pip install git+https://github.com/SheffieldSolar/SS-Utilities.git`
+    - NOTE: You may need to run this command as sudo on Linux machines depending, on your Python installation i.e. `sudo pip install git+https://github.com/SheffieldSolar/SS-Utilities.git`
 
 ## Getting started ##
 
@@ -32,7 +32,7 @@ from ss_utilities.generic_tools import from_unixtime, to_unixtime, print_progres
 ## How do I upgrade? ##
 
 To upgrade the code:
-* Run `pip install --upgrade git+https://SheffieldSolar@bitbucket.org/SheffieldSolar/ss-utilities.git`
+* Run `pip install --upgrade git+https://github.com/SheffieldSolar/SS-Utilities.git`
 
 ## Contribution Guidelines ##
 

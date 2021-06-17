@@ -81,7 +81,7 @@ def email_alert(message, recipient=None, carbon_copy=None, subject='Sheffield So
                 attachment = MIMEApplication(f.read(), 'subtype')
                 attachment['Content-Disposition'] = 'attachment; filename="%s";' % filename
                 msg.attach(attachment)
-    mailer = Popen(["/usr/sbin/sendmail", "-t"], stdin=PIPE)
+    mailer = Popen(["/usr/sbin/sendmail", "-t"], stdin=PIPE, text=True)
     mailer.communicate(msg.as_string())
     return
 
@@ -176,7 +176,10 @@ def query_yes_no(question, default="yes"):
         raise ValueError("invalid default answer: '%s'" % default)
     while True:
         sys.stdout.write(question + prompt)
-        choice = raw_input().lower()
+        if (sys.version_info > (3, 0)):
+            choice = input().lower()
+        else:
+            choice = raw_input().lower()
         if default is not None and choice == "":
             return valid[default]
         elif choice in valid:
