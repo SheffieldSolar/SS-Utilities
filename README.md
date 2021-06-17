@@ -6,7 +6,7 @@ A collection of generic, re-usable Python utilities.
 ## What is this repository for? ##
 
 * Cool Python functions that are re-usable.
-* Version 0.5
+* Version 0.6
 * Works with Python 2.7+ or 3.5+
 
 ## How do I get set up? ##
