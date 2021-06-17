@@ -113,7 +113,7 @@ setup(
     # pip to create the appropriate form of executable for the target platform.
     entry_points={
         "console_scripts": [
-            "scan_files = ss_utilities.scan_files:main",
+            "scan_files = ss_utilities.scan_files",
         ],
     },
 )
