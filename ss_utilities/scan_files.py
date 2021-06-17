@@ -104,6 +104,7 @@ def scan_files(path, extensions=["*"], recursive=False, find=None, replace=None,
 
 def main():
     opts = parse_options()
+    global quiet
     quiet = opts.quiet
     scan_files(
         path=opts.path,
