@@ -87,7 +87,8 @@ def myprint(msg):
     if not quiet:
         print(msg)
 
-def main(path, extensions=["*"], recursive=False, find=None, replace=None, outfile=None, encoding="utf-8"):
+def scan_files(path, extensions=["*"], recursive=False, find=None, replace=None, outfile=None,
+               encoding="utf-8"):
     myprint(f"Scanning '{path}' for files with extensions: {extensions}, recursive={recursive}...")
     path = os.path.join(path, "**") if recursive else path
     files = []
@@ -101,10 +102,10 @@ def main(path, extensions=["*"], recursive=False, find=None, replace=None, outfi
         myprint(f"    -> {len(results)} out of {len(files)} files contain the string '{find}'")
     print_results(results, outfile)
 
-if __name__ == "__main__":
+def main():
     opts = parse_options()
     quiet = opts.quiet
-    main(
+    scan_files(
         path=opts.path,
         extensions=opts.extensions,
         recursive=opts.recursive,
@@ -113,4 +114,7 @@ if __name__ == "__main__":
         outfile=opts.outfile,
         encoding=opts.encoding
     )
+
+if __name__ == "__main__":
+    main()
 
