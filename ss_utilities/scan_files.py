@@ -70,7 +70,7 @@ def find_in_files(files, find, replace=None):
         return files
     results = []
     for file in files:
-        found = True
+        found = False
         with open(file, "r+b") as fid:
             # import pdb; pdb.set_trace()
             content = fid.read()
