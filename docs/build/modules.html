@@ -1,0 +1,316 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
+    <title>Modules &#8212; SS-Utilities 0.6 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/classic.css" />
+    
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Welcome to SS-Utilities’s documentation!" href="index.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to SS-Utilities’s documentation!"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">SS-Utilities 0.6 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Modules</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="modules">
+<h1><a class="toc-backref" href="#id5">Modules</a><a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h1>
+<div class="contents topic" id="contents">
+<p class="topic-title">Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#modules" id="id5">Modules</a></p>
+<ul>
+<li><p><a class="reference internal" href="#module-ss_utilities.error_stats" id="id6">ss_utilities</a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<section id="module-ss_utilities.error_stats">
+<span id="ss-utilities"></span><h2><a class="toc-backref" href="#id6">ss_utilities</a><a class="headerlink" href="#module-ss_utilities.error_stats" title="Permalink to this headline">¶</a></h2>
+<p>Common error stat calculations.</p>
+<p>Jamie Taylor
+2018-09-04</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="ss_utilities.error_stats.mbe">
+<span class="sig-prename descclassname"><span class="pre">ss_utilities.error_stats.</span></span><span class="sig-name descname"><span class="pre">mbe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">predictions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">actuals</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ss_utilities.error_stats.mbe" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the Mean Bias Error (MBE).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>`predictions`</strong><span class="classifier">numpy array of floats</span></dt><dd><p>Predictions being tested.</p>
+</dd>
+<dt><strong>`actuals`</strong><span class="classifier">numpy array of floats</span></dt><dd><p>Actual values corresponding to <cite>predictions</cite>. Must be same size as <cite>predictions</cite>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>float</dt><dd><p>MBE.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{gathered}
+y=Actuals,\quad f=Predictions\\
+\mathit{MBE}=\frac{\sum_i^n{\left (f_i-y_i \right )}}{n}
+\end{gathered}\end{split}\]</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ss_utilities.error_stats.pearson_coefficient">
+<span class="sig-prename descclassname"><span class="pre">ss_utilities.error_stats.</span></span><span class="sig-name descname"><span class="pre">pearson_coefficient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">predictions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">actuals</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ss_utilities.error_stats.pearson_coefficient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the Pearson correlation coefficient <a class="reference internal" href="#r63566f7a2567-1" id="id1">[1]</a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>`predictions`</strong><span class="classifier">numpy array of floats</span></dt><dd><p>Predictions being tested.</p>
+</dd>
+<dt><strong>`actuals`: numpy array of floats</strong></dt><dd><p>Actual values corresponding to <cite>predictions</cite>. Must be same size as <cite>predictions</cite>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>float</dt><dd><p>Pearson correlation coefficient.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<div class="math notranslate nohighlight">
+\[\begin{align*}
+\rho_{x,y}=\frac{\mathrm{cov}(x, y)}{\sigma_x\sigma_y}
+\end{align*}\]</div>
+<p class="rubric">References</p>
+<dl class="citation">
+<dt class="label" id="r63566f7a2567-1"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p><a class="reference external" href="https://en.wikipedia.org/wiki/Pearson_correlation_coefficient">https://en.wikipedia.org/wiki/Pearson_correlation_coefficient</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ss_utilities.error_stats.r_squared">
+<span class="sig-prename descclassname"><span class="pre">ss_utilities.error_stats.</span></span><span class="sig-name descname"><span class="pre">r_squared</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">predictions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">actuals</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ss_utilities.error_stats.r_squared" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the coefficient of determination (a.k.a R-Squared) <a class="reference internal" href="#rf821cb4b27d6-1" id="id3">[1]</a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>`predictions`</strong><span class="classifier">numpy array of floats</span></dt><dd><p>Predictions being tested.</p>
+</dd>
+<dt><strong>`actuals`: numpy array of floats</strong></dt><dd><p>Actual values corresponding to <cite>predictions</cite>. Must be same size as <cite>predictions</cite>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>float</dt><dd><p>Coefficient of determination.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align*}
+y=Actuals,\quad f&amp;=Predictions,\quad \bar{y}=\frac{1}{n}\sum_{i=1}^n{y_i}\\
+SS_{tot}&amp;=\sum_i{(y_i-\bar{y})^2}\\
+SS_{res}&amp;=\sum_i{(y_i-f_i)^2}\\
+R^2&amp;=1-\frac{SS_{res}}{SS_{tot}}
+\end{align*}\end{split}\]</div>
+<p class="rubric">References</p>
+<dl class="citation">
+<dt class="label" id="rf821cb4b27d6-1"><span class="brackets"><a class="fn-backref" href="#id3">1</a></span></dt>
+<dd><p><a class="reference external" href="https://en.wikipedia.org/wiki/Coefficient_of_determination">https://en.wikipedia.org/wiki/Coefficient_of_determination</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ss_utilities.error_stats.rmse">
+<span class="sig-prename descclassname"><span class="pre">ss_utilities.error_stats.</span></span><span class="sig-name descname"><span class="pre">rmse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">predictions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">actuals</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ss_utilities.error_stats.rmse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the Root Mean Square Error (RMSE).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>`predictions`</strong><span class="classifier">numpy array of floats</span></dt><dd><p>Predictions being tested.</p>
+</dd>
+<dt><strong>`actuals`</strong><span class="classifier">numpy array of floats</span></dt><dd><p>Actual values corresponding to <cite>predictions</cite>. Must be same size as <cite>predictions</cite>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>float</dt><dd><p>RMSE.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{gathered}
+y=Actuals,\quad f=Predictions\\
+\mathit{RMSE}=\sqrt{\frac{\sum_i^n{{\left (f_i-y_i \right )}^2}}{n}}
+\end{gathered}\end{split}\]</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ss_utilities.error_stats.wmape">
+<span class="sig-prename descclassname"><span class="pre">ss_utilities.error_stats.</span></span><span class="sig-name descname"><span class="pre">wmape</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">predictions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">actuals</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">norms</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weights</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ss_utilities.error_stats.wmape" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the weighted Mean Absolute Percent Error (MAPE).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>`predictions`</strong><span class="classifier">numpy array of floats</span></dt><dd><p>Predictions being tested.</p>
+</dd>
+<dt><strong>`actuals`</strong><span class="classifier">numpy array of floats</span></dt><dd><p>Actual values corresponding to <cite>predictions</cite>. Must be same size as <cite>predictions</cite>.</p>
+</dd>
+<dt><strong>`norms`</strong><span class="classifier">numpy array of floats</span></dt><dd><p>Normalisation values. Must be same size as <cite>predictions</cite>. Default is to use <cite>actuals</cite>.</p>
+</dd>
+<dt><strong>`weights`</strong><span class="classifier">numpy array of floats</span></dt><dd><p>Weighting values. Must be same size as <cite>predictions</cite>. Default is to use <cite>actuals</cite>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>float</dt><dd><p>wMAPE.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{gathered}
+y=Actuals,\quad f=Predictions,\quad n=Normalisations,\quad w=Weights\\
+\mathit{wMAPE}=
+\frac{\sum_i{w_i\times\mathrm{abs}\left(\frac{f_i-y_i}{n_i}\right)\times100\%}}{\sum_i{w_i}}
+\end{gathered}\end{split}\]</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ss_utilities.error_stats.wmnbe">
+<span class="sig-prename descclassname"><span class="pre">ss_utilities.error_stats.</span></span><span class="sig-name descname"><span class="pre">wmnbe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">predictions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">actuals</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">norms</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weights</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ss_utilities.error_stats.wmnbe" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the weighted Mean Normalised Bias Error (wMnBE).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>`predictions`</strong><span class="classifier">numpy array of floats</span></dt><dd><p>Predictions being tested.</p>
+</dd>
+<dt><strong>`actuals`</strong><span class="classifier">numpy array of floats</span></dt><dd><p>Actual values corresponding to <cite>predictions</cite>. Must be same size as <cite>predictions</cite>.</p>
+</dd>
+<dt><strong>`norms`</strong><span class="classifier">numpy array of floats</span></dt><dd><p>Normalisation values. Must be same size as <cite>predictions</cite>. Default is to use <cite>actuals</cite>.</p>
+</dd>
+<dt><strong>`weights`</strong><span class="classifier">numpy array of floats</span></dt><dd><p>Weighting values. Must be same size as <cite>predictions</cite>. Default is to use <cite>actuals</cite>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>float</dt><dd><p>wMnBE.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{gathered}
+y=Actuals,\quad f=Predictions,\quad n=Normalisations,\quad w=Weights\\
+\mathit{wMnBE}=
+\frac{\sum_i{w_i\times\frac{f_i-y_i}{n_i}\times100\%}}{\sum_i{w_i}}
+\end{gathered}\end{split}\]</div>
+</dd></dl>
+
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Modules</a><ul>
+<li><a class="reference internal" href="#module-ss_utilities.error_stats">ss_utilities</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Welcome to SS-Utilities’s documentation!</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/modules.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to SS-Utilities’s documentation!"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">SS-Utilities 0.6 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Modules</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Jamie Taylor.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.0.1.
+    </div>
+  </body>
+</html>

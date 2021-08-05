@@ -22,13 +22,13 @@ setup(
     # Versions should comply with PEP440.  For a discussion on single-sourcing
     # the version across setup.py and the project code, see
     # https://packaging.python.org/en/latest/single_source_version.html
-    version="0.6",
+    version="0.7",
 
     description="A collection of generic, re-usable Python utilities.",
     long_description=long_description,
 
     # The project's main homepage.
-    url="https://bitbucket.org/SheffieldSolar/ss-utilities/",
+    url="https://github.com/SheffieldSolar/SS-Utilities",
 
     # Author details
     author="Jamie Taylor",

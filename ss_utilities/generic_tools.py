@@ -34,7 +34,8 @@ class GenericErrorLogger:
         self.logfile = filename
 
     def write_to_log(self, msg):
-        """Log the error message to the logfile along with a datestamp and the name of the script
+        """
+        Log the error message to the logfile along with a datestamp and the name of the script
         (in case of shared logfiles).
 
         Parameters
@@ -87,6 +88,7 @@ def email_alert(message, recipient=None, carbon_copy=None, subject='Sheffield So
 
 def to_unixtime(datetime_, timezone_=None):
     """
+    DEPRECATED! Use https://github.com/SheffieldSolar/sp2ts instead.
     Convert a python datetime object, *datetime_*, into unixtime int
 
     Parameters
@@ -105,9 +107,10 @@ def to_unixtime(datetime_, timezone_=None):
     unixtime == seconds since epoch (Jan 01 1970 00:00:00 UTC)\n
     See Also
     --------
-    `Python module pytz docs <http://pythonhosted.org/pytz/>`_,
     :func:`UKPVLiveTestCase.test_to_unixtime`
     """
+    raise Exception("The `to_unixtime()` method is no longer supported here, use "
+                    "https://github.com/SheffieldSolar/sp2ts instead.")
     if not timezone_ and not datetime_.tzinfo:
         raise GenericException(msg_id="ukpv_live.to_unixtime", msg=("EITHER datetime_ must contain "
                                                                     "tzinfo OR timezone_must be "
@@ -121,6 +124,7 @@ def to_unixtime(datetime_, timezone_=None):
 
 def from_unixtime(unixtime_, timezone_="UTC"):
     """
+    DEPRECATED! Use https://github.com/SheffieldSolar/sp2ts instead.
     Convert a unixtime int, *unixtime_*, into python datetime object
 
     Parameters
@@ -136,9 +140,10 @@ def from_unixtime(unixtime_, timezone_="UTC"):
     Notes
     -----
     unixtime == seconds since epoch (Jan 01 1970 00:00:00 UTC)\n
-    pytz http://pythonhosted.org/pytz/\n
     Unit test: UKPVLiveTestCase.test_to_unixtime
     """
+    raise Exception("The `from_unixtime()` method is no longer supported here, use "
+                    "https://github.com/SheffieldSolar/sp2ts instead.")
     return datetime.fromtimestamp(unixtime_, tz=pytz.timezone(timezone_))
 
 def myround(number, base=5):
