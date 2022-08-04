@@ -50,40 +50,46 @@ class GenericErrorLogger:
         fid.close()
         return
 
-def email_alert(message, recipient=None, carbon_copy=None, subject='Sheffield Solar', reply_to=None,
-                attachments=None, html=False):
+def send_email(
+                smtp_config: Dict,
+                message: str,
+                recipient: str,
+                carbon_copy: Optional[str] = None,
+                subject: Optional[str] = None,
+                reply_to: Optional[str] = None,
+                attachments: Optional[str] = None,
+                html: bool = False) -> None:
     """
-    Send an email alert using sendmail.
-
-    Warning
-    -------
-    Only tested on Linux systems. Sendmail must already be configured.
+    Send an email alert using smtplib.
     """
+    import smtplib, ssl
     from email.mime.multipart import MIMEMultipart
     from email.mime.text import MIMEText
     from email.mime.application import MIMEApplication
-    from subprocess import Popen, PIPE
     msg = MIMEMultipart()
-    msg['Subject'] = subject
-    msg['From'] = 'solar@sheffield.ac.uk'
-    if recipient is None:
-        recipient = 'jamie.taylor@sheffield.ac.uk'
+    msg["Subject"] = subject
+    msg["From"] = smtp_config["email"]
+    msg["To"] = recipient
     if carbon_copy is not None:
         msg["Cc"] = carbon_copy
-    msg['To'] = recipient
     if reply_to is not None:
         msg["Reply-To"] = reply_to
     body = MIMEText(message, "html") if html else MIMEText(message, "plain")
     msg.attach(body)
     if attachments is not None:
         for att in attachments:
-            with open(att, 'rb') as f:
+            with open(att, "rb") as f:
                 filename = os.path.split(att)[1]
-                attachment = MIMEApplication(f.read(), 'subtype')
-                attachment['Content-Disposition'] = 'attachment; filename="%s";' % filename
+                attachment = MIMEApplication(f.read(), "subtype")
+                attachment["Content-Disposition"] = 'attachment; filename="{filename}";'
                 msg.attach(attachment)
-    mailer = Popen(["/usr/sbin/sendmail", "-t"], stdin=PIPE, text=True)
-    mailer.communicate(msg.as_string())
+    # Create a secure SSL context
+    context = ssl.create_default_context()
+    context.check_hostname = False
+    context.verify_mode = ssl.CERT_NONE
+    with smtplib.SMTP_SSL(smtp_config["server"], smtp_config["port"], context=context) as server:
+        server.login(smtp_config["email"], smtp_config["password"])
+        server.send_message(msg)
     return
 
 def to_unixtime(datetime_, timezone_=None):
