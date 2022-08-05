@@ -9,6 +9,7 @@ A module of generic, reusable tools.
 from datetime import datetime
 import os
 import sys
+from typing import Optional, List, Dict
 import pytz
 from calendar import monthrange
 import numpy as np
@@ -51,14 +52,14 @@ class GenericErrorLogger:
         return
 
 def send_email(
-                smtp_config: Dict,
-                message: str,
-                recipient: str,
-                carbon_copy: Optional[str] = None,
-                subject: Optional[str] = None,
-                reply_to: Optional[str] = None,
-                attachments: Optional[str] = None,
-                html: bool = False) -> None:
+        smtp_config: Dict,
+        message: str,
+        recipient: str,
+        carbon_copy: Optional[str] = None,
+        subject: Optional[str] = None,
+        reply_to: Optional[str] = None,
+        attachments: Optional[List[str]] = None,
+        html: bool = False) -> None:
     """
     Send an email alert using smtplib.
     """
