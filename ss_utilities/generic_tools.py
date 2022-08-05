@@ -82,7 +82,7 @@ def send_email(
             with open(att, "rb") as f:
                 filename = os.path.split(att)[1]
                 attachment = MIMEApplication(f.read(), "subtype")
-                attachment["Content-Disposition"] = 'attachment; filename="{filename}";'
+                attachment["Content-Disposition"] = f'attachment; filename="{filename}";'
                 msg.attach(attachment)
     # Create a secure SSL context
     context = ssl.create_default_context()
