@@ -6,7 +6,7 @@ A collection of generic, re-usable Python utilities.
 ## What is this repository for? ##
 
 * Cool Python functions that are re-usable.
-* Version 0.8
+* Version 0.8.1
 * Developed and tested with Python 3.8
 
 ## How do I get set up? ##
